@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang=en debug="true">
+    <head>
+        <meta charset=utf-8>
+        <title>Javascript Inheritance Tests</title>
+        
+        <!--[if lt IE 9]>
+        <script type="text/javascript" src="https://getfirebug.com/firebug-lite.js#enabelTrace,startOpened=true"></script>
+        <![endif]-->
+        
+        <script type="text/javascript" src="sugar.js"></script>
+	      <script type="text/javascript" src="Base.js"></script>
+        <script>
+          console.log('\n');
+
+          // Instantiate our base class. This just shows it working.
+          var base = new Base(5, 20, 'My Base');
+
+          console.log('< Base >');
+          console.log(base.toString(), base);
+
+          base.x = 10;
+          base.y = 20;
+
+          console.log(base.toString(), base);
+          
+          base.renderProperties();
+
+          console.log('</ Base >');
+        </script>
+
+        <script>
+        
+          // Instantiate another base class.
+          // This shows that the two are distinct objects.
+          var base2 = new Base();
+
+          console.log('\n< Base2 >\n');
+          console.log('Create a new base object to show they are distinct');
+          console.log(base2.toString(), base2);
+
+          base2.x = 700;
+          base2.y = 900;
+
+          // Length only has a getter, so setting it should throw an error
+          // Properly throws an error in Chrome, but not FireFox
+          try {
+            base2.length = 50;
+          }
+          catch(e) {
+            console.log("Error: ", e);
+          }
+
+          console.log('Edited: ', base2.toString(), base2);
+          console.log('</ Base2 >');
+
+          console.log('\n< Base >\n');
+          console.log('Demonstrate our original Base object is intact');
+          console.log(base.toString());
+          console.log('</ Base >');
+        </script>
+
+        <script>
+          console.log('\n');
+
+          // Create a child that extends the base
+          var w = new Child(9, 9, 50, 50, 'Child 1');
+
+          console.log('\n< Child >\n');
+          console.log(w.toString(), w);
+          console.log('</ Child >');
+        </script>
+
+        <script>
+          console.log('\n');
+
+          // Create a child that extends the base
+          var j = new Child2(15, 60, 120, 120, 'Child 2');
+
+          console.log('\n< Child2 >\n');
+          console.log(j.toString(), j);
+          j.renderProperties();
+          console.log('</ Child2 >');
+        </script>
+
+        <script>
+        console.log('\n');
+
+        // Instantiate our public object/function
+        var parasite = new Parasite(9, 9, 50, 50);
+
+        console.log('\n< Parasite >\n');
+        console.log('Created: ', parasite.toString());
+
+        parasite.x = 77;
+        parasite.y = 88;
+        parasite.width = 99;
+        parasite.height = 45;
+
+        console.log('Edited: ', parasite.toString());
+
+        console.log('</ Parasite >');
+        </script>
+
+    </head>
+    <body>
+      <span>Nothing to see here...look in the console</span>
+    </body>
+</html>
