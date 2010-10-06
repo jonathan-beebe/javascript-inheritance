@@ -47,55 +47,49 @@ Function.method('swiss', function(parent) {
   return this;
 });
 
+
+
+
 /**
- * A generic way to define a getter/setter for
+ * A generic way to define getters/setters for
  * objects in both the old Mozilla way and the new ECMA standard way,
- * which should work in I.E. with DOM Elements, but not js objects.
+ * which should work in I.E., at least on DOM Elements.
  *
- * more info on javascript getters and setters:
- * John Resig: http://bit.ly/resig-js-gs-2007
- * Robert Nyman: http://bit.ly/nyman-js-gs-2009
+ * more info:
+ * John Resig: http://ejohn.org/blog/javascript-getters-and-setters/
+ * Robert Nyman: http://bit.ly/duSGZU
  *
- * @author somethingkindawierd@gmail.com (Jon Beebe)
- * @param {string} label The property name to get/set.
- * @param {function} getter The get function.
- * @param {function} setter The set function.
- */
-Object.prototype.addProperty = function(label, getter, setter) {
-
-  if (Object.defineProperty) {
-    Object.defineProperty(
-        this,
-        label,
-        {
-          get: getter,
-          set: setter
-        }
-    );
-  }
-  else {
-    if (getter) {
-      this.__defineGetter__(label, getter);
-    }
-    if (setter) {
-      this.__defineSetter__(label, setter);
-    }
-  }
-
-};
-
-/**
- * A generic way to define a group of getters/setters for objects
+ * https://developer.mozilla.org/en/JavaScript/Reference/global_objects/object/defineproperties
+ * https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/defineProperty
  *
  * @author somethingkindawierd@gmail.com (Jon Beebe)
- * @param {object} p Set of properties and their getter/setter methods.
  */
-Object.prototype.addProperties = function(p) {
 
-  for (var label in p) {
-    if (p.hasOwnProperty(label)) {
-      this.addProperty(label, p[label].get, p[label].set);
+if(!Object.defineProperty && Object.__defineGetter__) {
+  console.log("creating fake Object.defineProperty function...");
+  Object.prototype.defineProperty = function(target, label, funcs) {
+    if(funcs.get) {
+      target.__defineGetter__(label, funcs.get);
+    }
+    if(funcs.set) {
+      target.__defineSetter__(label, funcs.set);
     }
   }
+}
 
+if(!Object.defineProperties) {
+  Object.prototype.defineProperties = function(target, p) {
+    for(var label in p) {
+      if(p.hasOwnProperty(label)) {
+        Object.defineProperty(
+          target,
+          label,
+          {
+            get:p[label].get,
+            set:p[label].set
+          }
+        );
+      }
+    }
+  };
 };

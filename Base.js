@@ -28,7 +28,7 @@ var Base = function(x, y, name) {
   };
 
   // Define our getters and setters
-  this.addProperties({
+  Object.defineProperties(this, {
     x: {
       get: function() {
         return x_;
@@ -123,7 +123,7 @@ function Child(x, y, w, h, name) {
   var width_,
       height_;
 
-  this.addProperties({
+  Object.defineProperties(this, {
     width: {
       get: function() {
         return width_;
@@ -232,7 +232,7 @@ function Child2(x, y, w, h, name) {
 Child2.inherits(Base);
 
 // Add all getter/setter properties
-Child2.addProperties({
+Object.defineProperties(Child2, {
   width: {
     get: function() {
       return width_;
@@ -299,7 +299,7 @@ function Parasite(x, y, w, h) {
       height_,
       that = new Base(x, y, 'Parasite');
 
-  that.addProperties({
+  Object.defineProperties(that, {
     width: {
       get: function() {
         return width_;
