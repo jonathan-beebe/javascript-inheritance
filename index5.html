@@ -10,14 +10,15 @@
 
         <script type="text/javascript" src="underscore.js"></script>
         <script type="text/javascript" src="sugar.js"></script>
-	      <script type="text/javascript" src="Base2.js"></script>
+        <script src="closure-library/closure/goog/base.js"></script>
+	    <script type="text/javascript" src="Base3.js"></script>
 
         <script>
 
           console.log('----------------------------------------------');
 
 
-          var a = new Base(1,1,2,2);
+          var a = new Base();
           console.log('Created: ', a);
 
           a.name = 'My A';
@@ -49,33 +50,13 @@
           console.log('----------------------------------------------');
 
 
-          var c = new Child(1,1,2,2);
+          var c = new Child();
           console.log('Created: ', c);
 
-          c.name = 'My C';
           c.x = 10;
           c.y = 20;
 
           console.log('Created: ', c);
-          console.log('c Instance of Base? ', c instanceof Base);
-          console.log('c Instance of Child? ', c instanceof Child);
-
-          console.log('priv props: ', c.getProps());
-        </script>
-
-        <script>
-
-          console.log('----------------------------------------------');
-
-
-          var c = new Child(1,1,2,2);
-          console.log('Created: ', c.toString());
-
-          c.name = 'My C';
-          c.x = 10;
-          c.y = 20;
-
-          console.log('Created: ', c.toString());
           console.log('c Instance of Base? ', c instanceof Base);
           console.log('c Instance of Child? ', c instanceof Child);
 
@@ -86,10 +67,9 @@
           console.log('----------------------------------------------');
 
 
-          var d = new Child(1,1,2,2);
+          var d = new Child('Monkeys');
           console.log('Created: ', d.toString());
 
-          d.name = 'My D';
           d.x = 5;
           d.y = 7;
 

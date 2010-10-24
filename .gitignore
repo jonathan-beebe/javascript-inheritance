@@ -1,2 +1,5 @@
 .redcar
+.settings
+.project
+closure-library
 !.gitignore
