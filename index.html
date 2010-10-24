@@ -3,11 +3,11 @@
     <head>
         <meta charset=utf-8>
         <title>Javascript Inheritance Tests</title>
-        
+
         <!--[if lt IE 9]>
         <script type="text/javascript" src="https://getfirebug.com/firebug-lite.js#enabelTrace,startOpened=true"></script>
         <![endif]-->
-        
+
         <script type="text/javascript" src="sugar.js"></script>
 	      <script type="text/javascript" src="Base.js"></script>
         <script>
@@ -23,14 +23,14 @@
           base.y = 20;
 
           console.log(base.toString(), base);
-          
+
           base.renderProperties();
 
           console.log('</ Base >');
         </script>
 
         <script>
-        
+
           // Instantiate another base class.
           // This shows that the two are distinct objects.
           var base2 = new Base();
@@ -100,6 +100,11 @@
         console.log('Edited: ', parasite.toString());
 
         console.log('</ Parasite >');
+        </script>
+
+        <script>
+          console.log(w instanceof Child);
+          console.log(w instanceof Base);
         </script>
 
     </head>

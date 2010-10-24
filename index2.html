@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang=en debug="true">
+    <head>
+        <meta charset=utf-8>
+        <title>Javascript Inheritance Tests</title>
+
+        <!--[if lt IE 9]>
+        <script type="text/javascript" src="https://getfirebug.com/firebug-lite.js#enabelTrace,startOpened=true"></script>
+        <![endif]-->
+
+        <script type="text/javascript" src="sugar.js"></script>
+	      <script type="text/javascript" src="Base.js"></script>
+        <script>
+
+          console.log('----------------------------------------------');
+
+
+          var p1 = new Parasite(1,1,2,2);
+          console.log('Created: ', p1.toString(), p1);
+
+          p1.name = 'My Parasite';
+
+          console.log('Created: ', p1.toString(), p1);
+
+        </script>
+
+        <script>
+
+          console.log('----------------------------------------------');
+
+
+          var p2 = new Parasite(3,3,5,5);
+          console.log('Created: ', p2.toString(), p2);
+
+          p2.name = 'My Parasite 2';
+
+          console.log('Created: ', p2.toString(), p2);
+          console.log('Original: ', p1.toString(), p1);
+
+        </script>
+
+        <script>
+
+          console.log('----------------------------------------------');
+
+
+          var pp1 = new Parasite2(2,2,4,4);
+          console.log('Created: ', pp1.toString(), pp1);
+
+          pp1.name = 'My Parasite2.1';
+
+          console.log('Created: ', pp1.toString(), pp1);
+
+        </script>
+
+        <script>
+
+          console.log('----------------------------------------------');
+
+          var pp2 = new Parasite2(5,5,10,10, 'monkeys', 'Eating');
+          console.log('Created: ', pp2.toString(), pp2);
+
+          pp2.name = 'Monkey Breath';
+          pp2.power = 'flying';
+          pp2.x = -2;
+          pp2.y = -2
+
+          console.log('Created: ', pp2.toString(), pp2);
+          console.log('Original: ', pp1.toString(), pp1);
+
+        </script>
+
+        <script>
+          console.log(pp2 instanceof Parasite2);
+          console.log(pp2 instanceof Base);
+        </script>
+
+    </head>
+    <body>
+      <span>Nothing to see here...look in the console</span>
+    </body>
+</html>

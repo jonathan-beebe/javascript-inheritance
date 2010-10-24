@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang=en debug="true">
+    <head>
+        <meta charset=utf-8>
+        <title>Javascript Inheritance Tests</title>
+
+        <!--[if lt IE 9]>
+        <script type="text/javascript" src="https://getfirebug.com/firebug-lite.js#enabelTrace,startOpened=true"></script>
+        <![endif]-->
+
+        <script type="text/javascript" src="underscore.js"></script>
+        <script type="text/javascript" src="sugar.js"></script>
+	      <script type="text/javascript" src="Base2.js"></script>
+
+        <script>
+
+          console.log('----------------------------------------------');
+
+
+          var a = new Base(1,1,2,2);
+          console.log('Created: ', a);
+
+          a.name = 'My A';
+
+          console.log('Created: ', a);
+          console.log('Instance of Base? ', a instanceof Base);
+
+        </script>
+
+        <script>
+
+          console.log('----------------------------------------------');
+
+
+          var b = new Base(1,1,2,2);
+          console.log('Created: ', b);
+
+          b.name = 'My B';
+
+          console.log('Created: ', b);
+          console.log('b Instance of Base? ', b instanceof Base);
+          console.log('Original: ', a);
+          console.log('a Instance of Base? ', a instanceof Base);
+
+        </script>
+
+        <script>
+
+          console.log('----------------------------------------------');
+
+
+          var c = new Child(1,1,2,2);
+          console.log('Created: ', c);
+
+          c.name = 'My C';
+          c.x = 10;
+          c.y = 20;
+
+          console.log('Created: ', c);
+          console.log('c Instance of Base? ', c instanceof Base);
+          console.log('c Instance of Child? ', c instanceof Child);
+
+        </script>
+
+        <script>
+
+          console.log('----------------------------------------------');
+
+
+          var c = new Child(1,1,2,2);
+          console.log('Created: ', c.toString());
+
+          c.name = 'My C';
+          c.x = 10;
+          c.y = 20;
+
+          console.log('Created: ', c.toString());
+          console.log('c Instance of Base? ', c instanceof Base);
+          console.log('c Instance of Child? ', c instanceof Child);
+
+        </script>
+
+        <script>
+
+          console.log('----------------------------------------------');
+
+
+          var d = new Child(1,1,2,2);
+          console.log('Created: ', d.toString());
+
+          d.name = 'My D';
+          d.x = 5;
+          d.y = 7;
+
+          console.log('Created: ', d.toString());
+
+          console.log('d Instance of Base? ', d instanceof Base);
+          console.log('d Instance of Child? ', d instanceof Child);
+
+          console.log('Other Child: ', c.toString());
+
+        </script>
+
+    </head>
+    <body>
+      <span>Nothing to see here...look in the console</span>
+    </body>
+</html>

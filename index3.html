@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang=en debug="true">
+    <head>
+        <meta charset=utf-8>
+        <title>Javascript Inheritance Tests</title>
+
+        <!--[if lt IE 9]>
+        <script type="text/javascript" src="https://getfirebug.com/firebug-lite.js#enabelTrace,startOpened=true"></script>
+        <![endif]-->
+
+        <script type="text/javascript" src="sugar.js"></script>
+	      <script type="text/javascript" src="Base.js"></script>
+        <script>
+
+          console.log('----------------------------------------------');
+
+
+          var p1 = new Child3(10,10, 50, 50);
+          console.log('Created: ', p1.toString(), p1);
+
+          p1.name = 'My Child';
+
+          console.log('Created: ', p1.toString(), p1);
+
+        </script>
+
+        <script>
+
+          console.log('----------------------------------------------');
+
+
+          var p2 = new Child3(20,20,100,100,'Custom Name');
+          console.log('Created: ', p2.toString(), p2);
+
+          p2.name = 'My Child 2';
+          p2.x = 30;
+
+          console.log('Created: ', p2.toString(), p2);
+          console.log('Original: ', p1.toString(), p1);
+
+
+
+          console.log('Render Properties:');
+          p2.renderProperties();
+
+        </script>
+
+        <script>
+        console.log(p2 instanceof Child3);
+        console.log(p2 instanceof Base);
+        </script>
+
+    </head>
+    <body>
+      <span>Nothing to see here...look in the console</span>
+    </body>
+</html>

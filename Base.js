@@ -18,22 +18,17 @@ var Base = function(x, y, name) {
       y_,
       name_;
 
-  // Priveleged method can access the private stuff
-  // Notice we override this in one of the child classes
-  this.renderProperties = function() {
-    console.log('this: ', this);
-    console.log('x: ', x_);
-    console.log('y: ', y_);
-    console.log('name: ', name_);
-  };
-
   // Define our getters and setters
+  // Careful...these will not be copied over using an extends method
+  // also, if you create a child be using .prototype = new Base() then
+  // all children will share the same base obj, thus same base properties.
   Object.defineProperties(this, {
     x: {
       get: function() {
         return x_;
       },
       set: function(val) {
+        //console.log('Base.set x to ' + val);
         x_ = val;
       }
     },
@@ -59,6 +54,15 @@ var Base = function(x, y, name) {
       }
     }
   });
+
+  // Priveleged method can access the private stuff
+  // Notice we override this in one of the child classes
+  this.renderProperties = function() {
+    console.log('this: ', this);
+    console.log('x: ', x_);
+    console.log('y: ', y_);
+    console.log('name: ', name_);
+  };
 
   // Initialize attributes
   this.init(x, y, name);
@@ -123,6 +127,7 @@ function Child(x, y, w, h, name) {
   var width_,
       height_;
 
+
   Object.defineProperties(this, {
     width: {
       get: function() {
@@ -146,7 +151,11 @@ function Child(x, y, w, h, name) {
 
 }
 
+// Child.prototype = Base.prototype;
 // Inherit from our parent class
+// ALL instances of the Child class will share one common
+// Base object on their prototype. Thus all child.x properties
+// will be the same. Not desired...
 Child.inherits(Base);
 
 // Override the toString function
@@ -228,7 +237,7 @@ function Child2(x, y, w, h, name) {
 
 }
 
-// Inherit from our parent class
+// Inherit from our patoStringrent class
 Child2.inherits(Base);
 
 // Add all getter/setter properties
@@ -267,6 +276,64 @@ Child2.method('init', function(x, y, w, h, name) {
   this.height = h || 0;
   this.width = w || 0;
 });
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+/**
+ * Kinda like parasite (below) but we return an object for the public interface
+ * Pros: Define getters n setters uing object notation. Obvious which properties
+ * come from the parent or from this class (this.blah or that.blah).
+ * Cons: child instanceof Child3 will not work, can only extend via parasite
+ */
+var Child3 = function(x, y, w, h, name) {
+
+  var width_ = w || 0,
+      height_ = h || 0,
+
+      // Create our 'parent'
+      that = new Base(x, y, name);
+
+  // Public interface
+  var obj = {
+
+    get width() {
+      return width_;
+    },
+    set width(val) {
+      width_ = val;
+    },
+    get height() {
+      return height_;
+    },
+    set height(val) {
+      height_ = val;
+    },
+
+    toString: function() {
+      var s = that.name + ' = {x:' + that.x + ', y:' + that.y +
+          ', width:' + this.width +
+          ', height:' + this.height +
+          ', length:' + that.length + '}';
+      return s;
+    }
+
+  };
+
+  // Add in all the base getters and setters
+  inherits2(obj, that);
+
+  return obj;
+
+};
+
+
 
 
 
@@ -334,4 +401,28 @@ function Parasite(x, y, w, h) {
 
   return that;
 
-}
+};
+
+
+var Parasite2 = function(x, y, w, h, name, power) {
+
+  var power_,
+      that = new Parasite(x, y, w, h),
+      name = name || 'Parasite 2';
+
+  that.name = name;
+
+  Object.defineProperties(that, {
+    power: {
+      get: function() {
+        return power_;
+      },
+      set: function(val) {
+        power_ = val;
+      }
+    }
+  });
+
+  return that;
+
+};
