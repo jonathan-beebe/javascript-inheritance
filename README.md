@@ -33,3 +33,5 @@ Many thanks to these helpful individuals and their shared knowledge:
 *   [Douglas Crawford](http://bit.ly/crawford-inheritance)
 *   [John Resig](http://bit.ly/resig-js-gs-2007)
 *   [Robert Nyman](http://bit.ly/nyman-js-gs-2009)
+
+...i'm testing Cloud9 in Chrome...did this publish?
